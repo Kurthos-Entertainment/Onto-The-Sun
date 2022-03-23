@@ -45,15 +45,35 @@ public class CameraController : MonoBehaviour
 
         if (verticalMousePosition >= topScreenTrigger)
         {
-            transform.position += new Vector3(0, scrollSpeed * Time.deltaTime, 0);
+            ScrollUp();
+        }
+
+        if (Input.GetKey("w") || Input.GetKey("up"))
+        {
+            ScrollUp();
         }
 
         if (verticalMousePosition <= bottomScreenTrigger)
         {
-            transform.position -= new Vector3(0, scrollSpeed * Time.deltaTime, 0);
+            ScrollDown();
+        }
+
+        if (Input.GetKey("s") || Input.GetKey("down"))
+        {
+            ScrollDown();
         }
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, MinCameraPosition, MaxCameraPosition), transform.position.z);
+    }
+
+    private void ScrollDown()
+    {
+        transform.position -= new Vector3(0, scrollSpeed * Time.deltaTime, 0);
+    }
+
+    private void ScrollUp()
+    {
+        transform.position += new Vector3(0, scrollSpeed * Time.deltaTime, 0);
     }
 
     private void CheckMainMenu()

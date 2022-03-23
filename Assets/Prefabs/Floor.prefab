@@ -123,14 +123,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7568390494421186105}
     m_Modifications:
-    - target: {fileID: 627640739876272259, guid: 564cc714b27a33e419a1dcd534b9b91a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675894794615705084, guid: 564cc714b27a33e419a1dcd534b9b91a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7132346423911662588, guid: 564cc714b27a33e419a1dcd534b9b91a, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -225,10 +217,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7568390494421186105}
     m_Modifications:
-    - target: {fileID: 5675894794615705084, guid: 564cc714b27a33e419a1dcd534b9b91a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7132346423911662589, guid: 564cc714b27a33e419a1dcd534b9b91a, type: 3}
       propertyPath: m_Name
       value: LeftBeam
@@ -291,10 +279,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7568390494421186105}
     m_Modifications:
-    - target: {fileID: 5675894794615705084, guid: 564cc714b27a33e419a1dcd534b9b91a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7132346423911662589, guid: 564cc714b27a33e419a1dcd534b9b91a, type: 3}
       propertyPath: m_Name
       value: RightBeam

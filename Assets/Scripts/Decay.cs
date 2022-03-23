@@ -14,7 +14,10 @@ public class Decay : MonoBehaviour
     public ParticleSystem BreakEffect;
     public ParticleSystem ScrubEffect;
 
+    [SerializeField] private GameObject blink;
+    [SerializeField] private float blinkDurationSeconds = 0.1f;
     [SerializeField] private float defaultDecay;
+    [SerializeField] private float unstableHintRatio = 0.2f;
 
     private AudioSource audioSource;
     private new BoxCollider2D collider;
@@ -22,7 +25,8 @@ public class Decay : MonoBehaviour
     private new Renderer renderer;
     private Text text;
     private SpriteRenderer sprite;
-    private bool dead = false;
+    private bool isDead = false;
+    private bool isBlinking = false;
 
     private void Awake()
     {
@@ -66,19 +70,44 @@ public class Decay : MonoBehaviour
         renderer.material.SetColor("_Color", Color.Lerp(MinConditionColor, MaxConditionColor, Condition / gameState.BeamMaxCondition));
     }
 
+    private IEnumerator Blink()
+    {
+        blink.SetActive(true);
+        yield return new WaitForSeconds(blinkDurationSeconds);
+        blink.SetActive(false);
+        yield return new WaitForSeconds(blinkDurationSeconds);
+        isBlinking = false;
+    }
+
     private void CheckCondition()
     {
         if (Condition <= 0f)
         {
-            if (!dead)
+            if (!isDead)
             {
-                dead = true;
+                StopCoroutine("Blink");
+                blink.SetActive(false);
+                isDead = true;
                 collider.enabled = false;
                 sprite.enabled = false;
                 BreakEffect.Play();
                 audioSource.PlayOneShot(DestroySound);
                 Destroy(gameObject, 5f);
             }
+        }
+        else if ((Condition / gameState.BeamMaxCondition) < unstableHintRatio)
+        {
+            if (!isBlinking)
+            {
+                isBlinking = true;
+                StartCoroutine("Blink");
+            }
+        }
+        else
+        {
+            StopCoroutine("Blink");
+            blink.SetActive(false);
+            isBlinking = false;
         }
     }
 

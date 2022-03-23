@@ -68,12 +68,12 @@ public class CameraController : MonoBehaviour
 
     private void ScrollDown()
     {
-        transform.position -= new Vector3(0, scrollSpeed * Time.deltaTime, 0);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y - scrollSpeed, transform.position.z), Time.deltaTime);
     }
 
     private void ScrollUp()
     {
-        transform.position += new Vector3(0, scrollSpeed * Time.deltaTime, 0);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y + scrollSpeed, transform.position.z), Time.deltaTime);
     }
 
     private void CheckMainMenu()
